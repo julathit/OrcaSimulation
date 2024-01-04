@@ -1,0 +1,8 @@
+prefix=/home/julathit/urucup_ws/devel
+
+Name: grsim_ros_bridge
+Description: Description of grsim_ros_bridge
+Version: 0.0.0
+Cflags: -I/home/julathit/urucup_ws/devel/include
+Libs: -L${prefix}/lib 
+Requires: message_runtime

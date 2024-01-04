@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Version=2.2
+Name=grSim
+Comment=Robocup Small Size Robot Soccer Simulator
+Exec=grSim
+Icon=grsim
+Terminal=false
+Categories=Utility;Physics;Robotics;Application

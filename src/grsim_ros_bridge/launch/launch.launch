@@ -1,0 +1,8 @@
+<launch>
+  <arg name="mav_name" default="c5"/>
+
+  <node name="grsim_ros_bridge_node" pkg="grsim_ros_bridge" type="grsim_ros_bridge.py" output="screen"/>
+  <node name="run_grsim_node" pkg="grsim_ros_bridge" type="run_grsim.py" output="screen"/>
+  <node name="vision_comm_node" pkg="vision_comm" type="vision_node" output="screen"/>
+
+</launch>

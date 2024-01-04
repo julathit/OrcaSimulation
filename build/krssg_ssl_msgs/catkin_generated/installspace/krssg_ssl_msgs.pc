@@ -1,0 +1,8 @@
+prefix=/home/julathit/urucup_ws/install
+
+Name: krssg_ssl_msgs
+Description: Description of krssg_ssl_msgs
+Version: 0.0.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
+Requires: geometry_msgs std_msgs message_runtime

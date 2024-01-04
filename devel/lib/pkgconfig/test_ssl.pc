@@ -1,0 +1,8 @@
+prefix=/home/julathit/urucup_ws/devel
+
+Name: test_ssl
+Description: Description of test_ssl
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
