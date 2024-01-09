@@ -1,6 +1,7 @@
 #! /usr/bin/env python3
 from skills import *
 from sequence import *
+from utils import *
 
 
 import rospy
@@ -45,12 +46,11 @@ if __name__ == "__main__":
     r = rospy.Rate(50)
     
     while not rospy.is_shutdown():
-        sMoveToPoint.execute(pub,1,(-2500,-1500))
-        sMoveToPoint.execute(pub,0,(-1000,-1500))
+        # sMoveToPoint.execute(pub,1,(-2500,-1500))
+        # sMoveToPoint.execute(pub,0,(-1000,-1500))
         # seSudoAvoidance.execute(pub,2)
-        seNormalMove.execute(pub,2)
-        # seManulDrive.execute(pub,2)
-        sMoveToBall.execute(pub,3)
+        # seNormalMove.execute(pub,2)
+        ManulDrive.execute(pub,2)
         
         
     r.sleep(10)

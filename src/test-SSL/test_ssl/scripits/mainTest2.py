@@ -2,7 +2,6 @@
 from skills import *
 from sequence import *
 
-
 import rospy
 from grsim_ros_bridge_msgs.msg import *
 from krssg_ssl_msgs.msg import *
@@ -45,12 +44,11 @@ if __name__ == "__main__":
     r = rospy.Rate(50)
     
     while not rospy.is_shutdown():
-        sMoveToPoint.execute(pub,1,(-2500,-1500))
-        sMoveToPoint.execute(pub,0,(-1000,-1500))
-        # seSudoAvoidance.execute(pub,2)
-        seNormalMove.execute(pub,2)
+        sMoveToPoint.execute(pub,1,(-2500,-3000))
+        sMoveToPoint.execute(pub,0,(-1000,-3000))
+        seSudoAvoidance.execute(pub,2)
+        # seNormalMove.execute(pub,2)
         # seManulDrive.execute(pub,2)
-        sMoveToBall.execute(pub,3)
         
         
     r.sleep(10)

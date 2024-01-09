@@ -6,6 +6,7 @@ from grsim_ros_bridge_msgs.msg import *
 
 ssl_msg = {i: SSL() for i in range(5)}
 
+
 # def recibir_datos(data):
 
 #     for i in range(0, len(data.robots_blue)):
@@ -24,9 +25,9 @@ ssl_msg = {i: SSL() for i in range(5)}
 #     global ball
 #     ball = data.balls
 
+# sub = rospy.Subscriber("/vision", SSL_DetectionFrame, recibir_datos)
+
 def sendCommand(pub,robotIndex: int, x: float, y: float, z: float, kickPower: bool):
-    # sub = rospy.Subscriber("/vision", SSL_DetectionFrame, recibir_datos)
-    
     ssl_msg[robotIndex].cmd_vel.angular.z = z
     ssl_msg[robotIndex].cmd_vel.linear.x = x
     ssl_msg[robotIndex].cmd_vel.linear.y = y
