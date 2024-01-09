@@ -6,7 +6,7 @@ from skills import sKillNode
 pygame.init()
 
 # Set up the display
-width, height = 50, 7
+width, height = 110, 5
 screen = pygame.display.set_mode((width, height))
 pygame.display.set_caption("Keyboard Input")
 
