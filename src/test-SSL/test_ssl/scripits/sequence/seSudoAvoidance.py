@@ -11,7 +11,6 @@ def MoveTo(pub,robotIndex,pindex,Topindex):
         sMoveToPoint.execute(pub,robotIndex,point[pindex])
         print(sMoveToPoint.distanceToPoint(robotIndex,point[pindex]))
         if sMoveToPoint.distanceToPoint(robotIndex,point[pindex]) < 144 :
-            print('wtf',pindex+1)
             PointLogic = {f'Point{i}': False for i in range(len(point))}
             print(PointLogic)
             PointLogic[f'Point{Topindex}'] = True

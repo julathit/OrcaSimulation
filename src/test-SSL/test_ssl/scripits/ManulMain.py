@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 from skills import *
 from sequence import *
-from utils import *
+from manul import ManulDrive
 
 
 import rospy
@@ -32,8 +32,6 @@ def recibir_datos(data):
 
     global ball
     ball = data.balls
-
-
     
 
 if __name__ == "__main__":
@@ -46,11 +44,11 @@ if __name__ == "__main__":
     r = rospy.Rate(50)
     
     while not rospy.is_shutdown():
-        # sMoveToPoint.execute(pub,1,(-2500,-1500))
-        # sMoveToPoint.execute(pub,0,(-1000,-1500))
+        sMoveToPoint.execute(pub,1,(-2500,-1500))
+        sMoveToPoint.execute(pub,0,(-1000,-1500))
         # seSudoAvoidance.execute(pub,2)
-        # seNormalMove.execute(pub,2)
-        ManulDrive.execute(pub,2)
+        seNormalMove.execute(pub,2)
+        ManulDrive.execute(pub,4)
         
         
     r.sleep(10)

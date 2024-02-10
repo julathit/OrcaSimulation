@@ -3,6 +3,8 @@ import sys
 
 from skills import sKillNode
 
+
+
 pygame.init()
 
 # Set up the display
@@ -16,7 +18,7 @@ clock = pygame.time.Clock()
 # Variables to track if a key is currently pressed
 keys_pressed = set()
 
-moveSpeed = 50
+moveSpeed = 2
 rotationalSpeed = 5
 
 def execute(pub,robotIndex):
@@ -62,6 +64,8 @@ def execute(pub,robotIndex):
     if pygame.K_l in keys_pressed:
         print("l", end="", flush=True)    
         sKillNode.sendCommand(pub,robotIndex,0,0,-rotationalSpeed,False)
+    if len(keys_pressed) == 0:
+        sKillNode.sendCommand(pub,robotIndex,0,0,0,False)
 
     # Update the display
     pygame.display.flip()

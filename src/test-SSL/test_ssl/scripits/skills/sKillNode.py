@@ -1,6 +1,7 @@
 import rospy
 # from krssg_ssl_msgs.msg import *
 from grsim_ros_bridge_msgs.msg import *
+from utils import pySerial_test
 
 # robot = {i: SSL_DetectionRobot for i in range(5)}
 
@@ -33,3 +34,4 @@ def sendCommand(pub,robotIndex: int, x: float, y: float, z: float, kickPower: bo
     ssl_msg[robotIndex].cmd_vel.linear.y = y
     ssl_msg[robotIndex].kicker = kickPower
     pub[robotIndex].publish(ssl_msg[robotIndex])
+    pySerial_test.sendToLow(robotIndex,x,y,z,kickPower)

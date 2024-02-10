@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
-from skills import *
-from sequence import *
+from skills import sMoveToPoint
+from sequence import seNormalMove
 
 
 import rospy
@@ -50,7 +50,7 @@ if __name__ == "__main__":
         # seSudoAvoidance.execute(pub,2)
         seNormalMove.execute(pub,2)
         # seManulDrive.execute(pub,2)
-        sMoveToBall.execute(pub,3)
+        # sMoveToBall.execute(pub,3)
         
         
     r.sleep(10)
