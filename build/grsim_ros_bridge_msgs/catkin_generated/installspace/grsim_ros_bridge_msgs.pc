@@ -1,0 +1,8 @@
+prefix=/home/rtx/urucup_ws/install
+
+Name: grsim_ros_bridge_msgs
+Description: Description of grsim_ros_bridge_msgs
+Version: 0.0.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
+Requires: 
