@@ -1,4 +1,5 @@
 from . import sKillNode
+from utils import position
 
 import rospy
 from geometry_msgs.msg import *
@@ -8,37 +9,36 @@ from krssg_ssl_msgs.msg import *
 
 import math
 
-ball = Pose()
+# ball = Pose()
 
-robot0 = SSL_DetectionRobot()
-robot1 = SSL_DetectionRobot()
-robot2 = SSL_DetectionRobot()
-robot3 = SSL_DetectionRobot()
-robot4 = SSL_DetectionRobot()
-robot = {i: SSL_DetectionRobot() for i in range(5)}
 
-def recibir_datos(data):
+# robot = {i: SSL_DetectionRobot() for i in range(5)}
 
-    for i in range(0, len(data.robots_blue)):
-        id_robots = data.robots_blue[i].robot_id
-        if id_robots == 0:
-            robot[0] = data.robots_blue[i]
-        if id_robots == 1:
-            robot[1] = data.robots_blue[i]
-        if id_robots == 2:
-            robot[2] = data.robots_blue[i]
-        if id_robots == 3:
-            robot[3] = data.robots_blue[i]
-        if id_robots == 4:
-            robot[4] = data.robots_blue[i]
+# def recibir_datos(data):
 
-sub = rospy.Subscriber("/vision", SSL_DetectionFrame, recibir_datos)
+#     for i in range(0, len(data.robots_blue)):
+#         id_robots = data.robots_blue[i].robot_id
+#         if id_robots == 0:
+#             robot[0] = data.robots_blue[i]
+#         if id_robots == 1:
+#             robot[1] = data.robots_blue[i]
+#         if id_robots == 2:
+#             robot[2] = data.robots_blue[i]
+#         if id_robots == 3:
+#             robot[3] = data.robots_blue[i]
+#         if id_robots == 4:
+#             robot[4] = data.robots_blue[i]
 
-def angToPoint(robotIndex: int, point: tuple):
-    return math.atan2(point[1] - robot[robotIndex].y,point[0] - robot[robotIndex].x)
+# sub = rospy.Subscriber("/vision", SSL_DetectionFrame, recibir_datos)
 
-def distanceToPoint(robotIndex: int, point: tuple):
-    return math.sqrt((point[1] - robot[robotIndex].y)**2 + (point[0] - robot[robotIndex].x)**2) 
+# def angToPoint(robotIndex: int, point: tuple):
+#     return math.atan2(point[1] - robot[robotIndex].y,point[0] - robot[robotIndex].x)
+
+# def distanceToPoint(robotIndex: int, point: tuple):
+#     return math.sqrt((point[1] - robot[robotIndex].y)**2 + (point[0] - robot[robotIndex].x)**2) 
+angToPoint = position.angToPoint
+robot = position.robot
+distanceToPoint = position.distanceToPoint
 
 def execute(pub,robotIndex: int,point: tuple):
     

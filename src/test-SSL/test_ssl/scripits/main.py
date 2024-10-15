@@ -1,5 +1,5 @@
 #! /usr/bin/env python3
-from skills import sMoveToPoint
+from skills import sMoveToPoint, sMoveToBall
 from sequence import seNormalMove
 
 
@@ -7,11 +7,7 @@ import rospy
 from grsim_ros_bridge_msgs.msg import *
 from krssg_ssl_msgs.msg import *
 
-robot0 = SSL_DetectionRobot()
-robot1 = SSL_DetectionRobot()
-robot2 = SSL_DetectionRobot()
-robot3 = SSL_DetectionRobot()
-robot4 = SSL_DetectionRobot()
+
 robot = {i: SSL_DetectionRobot for i in range(5)}
 
 def recibir_datos(data):
@@ -50,7 +46,7 @@ if __name__ == "__main__":
         # seSudoAvoidance.execute(pub,2)
         seNormalMove.execute(pub,2)
         # seManulDrive.execute(pub,2)
-        # sMoveToBall.execute(pub,3)
+        sMoveToBall.execute(pub,3)
         
         
     r.sleep(10)
