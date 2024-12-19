@@ -2,7 +2,7 @@ import pygame
 import sys
 
 from skills import sKillNode
-
+from utils import position
 
 
 pygame.init()
@@ -36,7 +36,8 @@ joystick.init()
 
 running = True
 
-def execute(pub,robotIndex):
+def execute(robotIndex):
+    print(position.robot[robotIndex].x,position.robot[robotIndex].y)
         # Handle events
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -49,16 +50,13 @@ def execute(pub,robotIndex):
                 sys.exit()
             elif event.key not in keys_pressed:
                 keys_pressed.add(event.key)
-                print(f"Key pressed: {pygame.key.name(event.key)}")
             if event.key == pygame.K_SPACE:
-                print('spaced')
-                sKillNode.sendCommand(pub,robotIndex,0,0,0,True)
+                sKillNode.sendCommand(robotIndex,0,0,0,True)
         elif event.type == pygame.KEYUP:
             # Check if the released key was being tracked
             if event.key in keys_pressed:
                 keys_pressed.remove(event.key)
-                print(f"Key released: {pygame.key.name(event.key)}",'stop')
-                sKillNode.sendCommand(pub,robotIndex,0,0,0,False)
+                sKillNode.sendCommand(robotIndex,0,0,0,False)
     
     # Joystick input handling
     x_axis_value = -joystick.get_axis(0) * 2
@@ -74,27 +72,21 @@ def execute(pub,robotIndex):
     moveSpeed = 2
     rotationalSpeed = 5
     if pygame.K_w in keys_pressed:
-        print("W", end="", flush = True)
-        sKillNode.sendCommand(pub,robotIndex,moveSpeed,0,0,False)
+        sKillNode.sendCommand(robotIndex,moveSpeed,0,0,False)
     if pygame.K_a in keys_pressed:
-        print("A", end="", flush=True)
-        sKillNode.sendCommand(pub,robotIndex,0,moveSpeed,0,False)  
+        sKillNode.sendCommand(robotIndex,0,moveSpeed,0,False)  
     if pygame.K_s in keys_pressed:
-        print("S", end="" , flush=True)
-        sKillNode.sendCommand(pub,robotIndex,-moveSpeed,0,0,False)  
+        sKillNode.sendCommand(robotIndex,-moveSpeed,0,0,False)  
     if pygame.K_d in keys_pressed:
-        print("D", end="", flush=True)    
-        sKillNode.sendCommand(pub,robotIndex,0,-moveSpeed,0,False)
-    if pygame.K_k in keys_pressed:
-        print("k", end="", flush=True)    
-        sKillNode.sendCommand(pub,robotIndex,0,0,rotationalSpeed,False)
-    if pygame.K_l in keys_pressed:
-        print("l", end="", flush=True)    
-        sKillNode.sendCommand(pub,robotIndex,0,0,-rotationalSpeed,False)
+        sKillNode.sendCommand(robotIndex,0,-moveSpeed,0,False)
+    if pygame.K_k in keys_pressed:  
+        sKillNode.sendCommand(robotIndex,0,0,rotationalSpeed,False)
+    if pygame.K_l in keys_pressed: 
+        sKillNode.sendCommand(robotIndex,0,0,-rotationalSpeed,False)
     if len(keys_pressed) == 0:
-        sKillNode.sendCommand(pub,robotIndex,0,0,0,False)
+        sKillNode.sendCommand(robotIndex,0,0,0,False)
     if "JOYSTICK" in keys_pressed:
-        sKillNode.sendCommand(pub, robotIndex, y_axis_value, x_axis_value, r_axis_value, False)
+        sKillNode.sendCommand( robotIndex, y_axis_value, x_axis_value, r_axis_value, False)
         
 
     # Update the display

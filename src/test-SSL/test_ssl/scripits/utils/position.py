@@ -8,7 +8,10 @@ import math
 
 ball = Pose()
 
-robot = {i: SSL_DetectionRobot() for i in range(5)}
+#number of robot
+n = 11
+
+robot = {i: SSL_DetectionRobot() for i in range(n)}
 
 p_ball = (0,0)
 
@@ -16,16 +19,20 @@ def recibir_datos(data):
 
     for i in range(0, len(data.robots_blue)):
         id_robots = data.robots_blue[i].robot_id
-        if id_robots == 0:
-            robot[0] = data.robots_blue[i]
-        if id_robots == 1:
-            robot[1] = data.robots_blue[i]
-        if id_robots == 2:
-            robot[2] = data.robots_blue[i]
-        if id_robots == 3:
-            robot[3] = data.robots_blue[i]
-        if id_robots == 4:
-            robot[4] = data.robots_blue[i]
+        # if id_robots == 0:
+        #     robot[0] = data.robots_blue[i]
+        # if id_robots == 1:
+        #     robot[1] = data.robots_blue[i]
+        # if id_robots == 2:
+        #     robot[2] = data.robots_blue[i]
+        # if id_robots == 3:
+        #     robot[3] = data.robots_blue[i]
+        # if id_robots == 4:
+        #     robot[4] = data.robots_blue[i]
+        for j in range(n):
+            if id_robots == j:
+                robot[j] = data.robots_blue[i]
+
     global ball
     ball = data.balls
 
@@ -45,7 +52,10 @@ def save_ball():
     except:
         # print('except')
         pass
-    
+
+def ballPos():
+    save_ball()
+    return p_ball    
 
 def angToBall(robotIndex: int):
     save_ball()

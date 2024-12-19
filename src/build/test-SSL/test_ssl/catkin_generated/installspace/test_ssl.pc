@@ -1,0 +1,8 @@
+prefix=/usr/local
+
+Name: test_ssl
+Description: Description of test_ssl
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

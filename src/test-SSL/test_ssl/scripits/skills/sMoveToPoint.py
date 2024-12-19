@@ -9,38 +9,12 @@ from krssg_ssl_msgs.msg import *
 
 import math
 
-# ball = Pose()
 
-
-# robot = {i: SSL_DetectionRobot() for i in range(5)}
-
-# def recibir_datos(data):
-
-#     for i in range(0, len(data.robots_blue)):
-#         id_robots = data.robots_blue[i].robot_id
-#         if id_robots == 0:
-#             robot[0] = data.robots_blue[i]
-#         if id_robots == 1:
-#             robot[1] = data.robots_blue[i]
-#         if id_robots == 2:
-#             robot[2] = data.robots_blue[i]
-#         if id_robots == 3:
-#             robot[3] = data.robots_blue[i]
-#         if id_robots == 4:
-#             robot[4] = data.robots_blue[i]
-
-# sub = rospy.Subscriber("/vision", SSL_DetectionFrame, recibir_datos)
-
-# def angToPoint(robotIndex: int, point: tuple):
-#     return math.atan2(point[1] - robot[robotIndex].y,point[0] - robot[robotIndex].x)
-
-# def distanceToPoint(robotIndex: int, point: tuple):
-#     return math.sqrt((point[1] - robot[robotIndex].y)**2 + (point[0] - robot[robotIndex].x)**2) 
 angToPoint = position.angToPoint
 robot = position.robot
 distanceToPoint = position.distanceToPoint
 
-def execute(pub,robotIndex: int,point: tuple):
+def execute(robotIndex: int,point: tuple):
     
     headingAngToBall = angToPoint(robotIndex,point) - robot[robotIndex].orientation 
     
@@ -51,11 +25,11 @@ def execute(pub,robotIndex: int,point: tuple):
         headingAngToBall += 2 * math.pi
 
         
-    if distanceToPoint(robotIndex,point) < 144:
-        sKillNode.sendCommand(pub,robotIndex,0,0,0,False)
+    if distanceToPoint(robotIndex,point) < 60:
+        sKillNode.sendCommand(robotIndex,0,0,0,False)
     elif abs(headingAngToBall) < 0.1 :
-        sKillNode.sendCommand(pub,robotIndex,0.5*distanceToPoint(robotIndex,point)+0.25,0,0,False)
+        sKillNode.sendCommand(robotIndex,min(0.25*distanceToPoint(robotIndex,point)+0.25,20),0,0,False)
     elif abs(headingAngToBall) > 0.1:
-        sKillNode.sendCommand(pub,robotIndex,0,0,3*headingAngToBall,False)
+        sKillNode.sendCommand(robotIndex,0,0,3*headingAngToBall,False)
 
 

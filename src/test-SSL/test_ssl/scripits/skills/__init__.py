@@ -4,3 +4,4 @@ from . import sKillNode
 from . import sMoveToBall
 from . import sMoveToPoint
 from . import sStop
+from . import sKickBall
